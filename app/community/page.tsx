@@ -95,6 +95,7 @@ function FilterSection({
 
 export default function CommunityPage() {
   const [hourlyRate, setHourlyRate] = useState(100);
+  const [location, setLocation] = useState("LA");
   const histogramBars = [42, 56, 72, 45, 35, 22, 28, 18];
 
   return (
@@ -103,13 +104,26 @@ export default function CommunityPage() {
         <aside className="min-w-[190px] shrink-0 border-r border-white/[0.08] px-6 py-4 lg:px-5 lg:py-5">
           <section>
             <h2 className="text-[20px] font-semibold leading-none text-white">Location</h2>
-            <button
-              type="button"
-              className="mt-3 flex h-10 w-full items-center justify-between rounded-[6px] border border-white/20 bg-transparent px-3 text-left text-[14px] text-zinc-400"
-            >
-              <span>Select location</span>
-              <span className="text-zinc-500">▾</span>
-            </button>
+            <div className="relative mt-3">
+              <select
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="h-10 w-full appearance-none rounded-[6px] border border-white/20 bg-transparent px-3 pr-8 text-left text-[14px] text-zinc-300 outline-none transition focus:border-white/30"
+                aria-label="Select location"
+              >
+                {["LA", "NY", "SF", "Chicago", "Boston"].map((city) => (
+                  <option key={city} value={city} className="bg-[#141414] text-zinc-200">
+                    {city}
+                  </option>
+                ))}
+              </select>
+              <span
+                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500"
+                aria-hidden
+              >
+                ▾
+              </span>
+            </div>
           </section>
 
           <div className="mt-5 space-y-5">
